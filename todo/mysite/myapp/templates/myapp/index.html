@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Documents</title>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="container">
+
+
+    <div class="row">
+       <div class="col-md-12">
+           <h1>ToDo App</h1>
+       </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+           <form method="POST">
+                {% csrf_token %}
+                <input type="text" id="name" name="name">
+                <input type="text" id="priority" name="priority">
+                <input type="submit">
+             </form>
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Task ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <th scope="row">{{task.id}}</th>
+                    <td>{{task.name}}</td>
+                    <td>{{task.priority}}</td>
+                    <td><a class="btn btn-primary" href="delete/{{task.id}}">Done</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
